@@ -25,6 +25,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Build package
+        run: npm run build
+
       - name: Update package version
         run: |
           npm version patch --no-git-tag-version
