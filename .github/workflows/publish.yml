@@ -37,6 +37,11 @@ jobs:
         env:
          CI: true
 
+      - name: Create Git tag
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          git tag "v$VERSION"
+          git push origin "v$VERSION"
 
       - name: Commit and push updated package.json
         run: |
