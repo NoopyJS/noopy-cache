@@ -11,11 +11,15 @@ export function Cache(options: {ttl: number}) {
             const cachedValue = cache.get(key);
 
             if(cachedValue !== null) {
-                console.log('Cache hit');
+                if(cache.debug) {
+                    console.log('Cache hit for key:', key);
+                }
                 return cachedValue
             }
 
-            console.log('Cache miss');
+            if(cache.debug) {
+                console.log('Cache miss for key:', key);
+            }
             const result = originalMethod.apply(this, args);
             cache.set(key, result, options.ttl);
             return result;

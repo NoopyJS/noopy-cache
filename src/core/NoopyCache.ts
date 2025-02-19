@@ -4,13 +4,15 @@ import {CacheLocalStorage} from "./CacheLocalStorage";
 export class NoopyCache<T> {
     private cacheSystem: CacheInterface<T>;
     private static instance: NoopyCache<any>;
+    public debug: boolean = false;
 
-    constructor(cacheSystem?: CacheInterface<T>) {
+    constructor(cacheSystem?: CacheInterface<T>, debug?: boolean) {
         this.cacheSystem = cacheSystem || new CacheLocalStorage();
+        this.debug = debug || false;
     }
 
-    static configure(cache: CacheInterface<any>) {
-        this.instance = new NoopyCache(cache);
+    static configure(cache: CacheInterface<any>, debug?: boolean) {
+        this.instance = new NoopyCache(cache, debug);
     }
 
     static getInstance<T>(): NoopyCache<T> {
