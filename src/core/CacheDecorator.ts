@@ -12,13 +12,13 @@ export function Cache(options: {ttl: number}) {
 
             if(cachedValue !== null) {
                 if(cache.debug) {
-                    console.log('Cache hit for key:', key);
+                    console.log('Cache hit for key:', propertyKey);
                 }
                 return cachedValue
             }
 
             if(cache.debug) {
-                console.log('Cache miss for key:', key);
+                console.log('Cache miss for key:', propertyKey);
             }
             const result = originalMethod.apply(this, args);
             cache.set(key, result, options.ttl);
